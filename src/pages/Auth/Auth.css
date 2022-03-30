@@ -1,0 +1,37 @@
+.signup-card {
+  margin: 1rem auto;
+}
+.login-card {
+  margin: 4rem auto;
+}
+.signup,
+.login {
+  max-width: 28rem;
+  margin: auto;
+  padding: 1rem;
+  background-color: var(--off-white);
+  box-shadow: var(--lightShadow);
+  border-radius: 5px;
+}
+
+form .input {
+  margin: 0.5rem 0;
+  font-weight: 500;
+  position: relative;
+}
+form .input-text {
+  font-size: 1.1rem;
+  position: relative;
+}
+
+form .eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 40px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.error {
+  color: red;
+  padding: 0.5rem 0;
+}
