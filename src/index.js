@@ -4,18 +4,20 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
-import { ThemeProvider } from "./context/index";
+import { AuthProvider, ThemeProvider } from "./context/index";
 
 // Call make Server
 makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <Router>
-        <App />
-      </Router>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </ThemeProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );

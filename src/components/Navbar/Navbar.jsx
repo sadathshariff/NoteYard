@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { FaMoon, FaSun } from "react-icons/fa";
-import { useTheme } from "../../context";
+import { useAuth, useTheme } from "../../context";
 import "./Navbar.css";
+import { Button } from "../Button/Button";
 export const Navbar = () => {
   const { toggleTheme, theme } = useTheme();
+  const { loggedIn, logoutHandler } = useAuth();
   return (
     <>
       <header className="header navbar-container">
@@ -13,9 +15,17 @@ export const Navbar = () => {
         <nav>
           <div className="nav-items flex">
             <div className="nav-item">
-              <Link to="/login">
-                <button className="btn btn-secondary">Login</button>
-              </Link>
+              {loggedIn ? (
+                <Button
+                  name={"Logout"}
+                  btnclass={"btn-secondary"}
+                  onClick={logoutHandler}
+                />
+              ) : (
+                <Link to="/login">
+                  <Button name={"Login"} btnclass={"btn-secondary"} />
+                </Link>
+              )}
             </div>
             <div className="nav-item">
               {theme === "light" ? (
