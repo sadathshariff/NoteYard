@@ -1,0 +1,37 @@
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.item {
+  margin-top: 3rem;
+  padding: 1rem;
+}
+.hero-img {
+  display: block;
+  max-width: 100%;
+  max-inline-size: 100%;
+  block-size: auto;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 5rem 0;
+}
+.info-container {
+  margin: 2rem 0;
+  padding: 1rem;
+}
+.login-text {
+  margin: 1rem 0;
+}
+@media screen and (max-width: 760px) {
+  .main-container {
+    grid-template-columns: 1fr;
+  }
+  .hero-content {
+    padding: 0;
+  }
+}
