@@ -1,12 +1,11 @@
 .main-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  height: 100vh;
 }
 
 .item {
   margin-top: 3rem;
-  padding: 2rem;
+  padding: 1rem;
 }
 .hero-img {
   display: block;
