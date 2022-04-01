@@ -1,0 +1,20 @@
+.notecard {
+  padding: 1rem;
+  height: fit-content;
+  width: 20rem;
+  margin: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: var(--off-white);
+}
+
+.light-notecard {
+  background-color: var(--off-white);
+  color: #000000;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+.dark-notecard {
+  background-color: #121212;
+  color: var(--off-white);
+  box-shadow: 0 4px 4px 0 rgba(255, 255, 255, 0.5);
+}
