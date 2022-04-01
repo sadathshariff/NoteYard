@@ -1,0 +1,19 @@
+.addNote-container {
+  width: 48rem;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+.addNote-container .input {
+  margin: 0.5rem 0;
+}
+.addNote-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.addNote-btn {
+  width: max-content;
+  padding: 0 1rem;
+  cursor: pointer;
+}
