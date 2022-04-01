@@ -1,8 +1,8 @@
 .light {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: var(--white-color);
+  color: var(--black-color);
 }
 .dark {
-  background-color: #121212;
-  color: #ffffff;
+  background-color: var(--black-color);
+  color: var(--white-color);
 }

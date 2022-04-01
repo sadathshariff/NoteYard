@@ -1,0 +1,17 @@
+.side-nav-container {
+  padding: 2rem;
+  margin-right: 2rem;
+  height: 100vh;
+  border-radius: 5px;
+  flex-basis: 20%;
+  background-color: var(--off-white);
+  border-radius: 5px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+}
+.side-nav-list {
+  padding: 1rem;
+}
+.side-nav-list li {
+  display: grid;
+  justify-items: stretch;
+}
