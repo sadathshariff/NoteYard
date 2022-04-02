@@ -1,6 +1,6 @@
 import "./AddNote.css";
 import { Button } from "../index";
-import { useState } from "react";
+
 import { FaPlusCircle } from "react-icons/fa";
 import axios from "axios";
 import { useNotes } from "../../context";
@@ -10,9 +10,10 @@ export const AddNote = () => {
     label: "",
     notes: "",
   };
-  const [note, setNote] = useState(initialData);
-  const [showNote, setShowNote] = useState(false);
-  const { setUserNotes } = useNotes();
+  // const [note, setNote] = useState(initialData);
+  // const [showNote, setShowNote] = useState(false);
+  const { setUserNotes, showForm, setShowForm, note, setNote, updateNote } =
+    useNotes();
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -33,7 +34,7 @@ export const AddNote = () => {
       );
       if (res.status === 201) {
         setUserNotes(res.data.notes);
-        setShowNote(false);
+        setShowForm(false);
       }
     } catch (error) {
       console.error(error);
@@ -46,47 +47,52 @@ export const AddNote = () => {
   };
   const handleClose = () => {
     setNote(initialData);
-    setShowNote((prev) => !prev);
+    setShowForm((prev) => !prev);
   };
+  const update = () => {
+    
+  }
   return (
     <div className="addNote-main-container">
       <div
         className="addNote-btn flex"
-        onClick={() => setShowNote((prev) => !prev)}
+        onClick={() => setShowForm((prev) => !prev)}
       >
         <FaPlusCircle size={25} color={"#1476B8"} />
         <p className="small-text-1">Take a Note</p>
       </div>
-      {showNote && (
+      {showForm && (
         <div className="addNote-container">
           <form onSubmit={handleSubmit}>
-            <div className="input">
-              <label htmlFor="title">Title*</label>
-              <input
-                type="text"
-                name="title"
-                className="input-text"
-                id="title"
-                placeholder="Enter Title"
-                value={note.title}
-                onChange={(e) => handleChange(e)}
-                required
-              />
-            </div>
-            <div className="input">
-              <label htmlFor="label">label*</label>
-              <select
-                name="label"
-                id="label"
-                className="input-text"
-                onChange={(e) => handleChange(e)}
-                required
-              >
-                <option value="Work">Work</option>
-                <option value="Home">Home</option>
-                <option value="Class">Class</option>
-                <option value="Exercise">Exercise</option>
-              </select>
+            <div className="grid grid-col-2 grid-gap-1">
+              <div className="input ">
+                <label htmlFor="title">Title*</label>
+                <input
+                  type="text"
+                  name="title"
+                  className="input-text"
+                  id="title"
+                  placeholder="Enter Title"
+                  value={note.title}
+                  onChange={(e) => handleChange(e)}
+                  required
+                />
+              </div>
+              <div className="input">
+                <label htmlFor="label">label*</label>
+                <select
+                  name="label"
+                  id="label"
+                  className="input-text"
+                  onChange={(e) => handleChange(e)}
+                  required
+                >
+                  <option value="Work">Work</option>
+                  <option value="Home">Home</option>
+                  <option value="Class">Class</option>
+                  <option value="Exercise">Exercise</option>
+                </select>
+              </div>
             </div>
             <div className="input">
               <textarea
