@@ -1,7 +1,6 @@
 .notePage-container {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
   padding-left: 1rem;
   padding-right: 1rem;
   margin: 1rem auto;

@@ -16,7 +16,7 @@ export const Notes = () => {
               <h3 className="headline-3 text-center">Notes</h3>
               <div className="notes">
                 {userNotes.map((note) => (
-                  <NoteCard key={note._id} note={note} />
+                  <NoteCard key={note._id} note={note} deleteIcon={true} />
                 ))}
               </div>
             </>
