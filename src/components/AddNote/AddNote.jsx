@@ -12,8 +12,16 @@ export const AddNote = () => {
   };
   // const [note, setNote] = useState(initialData);
   // const [showNote, setShowNote] = useState(false);
-  const { setUserNotes, showForm, setShowForm, note, setNote, updateNote } =
-    useNotes();
+  const {
+    setUserNotes,
+    showForm,
+    setShowForm,
+    note,
+    setNote,
+    updateNote,
+    isEditing,
+    setIsEditing,
+  } = useNotes();
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -43,15 +51,20 @@ export const AddNote = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     submitNote(note);
+    console.log("Submit", note);
     setNote(initialData);
   };
   const handleClose = () => {
     setNote(initialData);
     setShowForm((prev) => !prev);
   };
-  const update = () => {
-    
-  }
+  const update = async (id, note) => {
+    await updateNote(id, note);
+    setShowForm((prev) => !prev);
+    setIsEditing(false);
+    setNote(initialData);
+  };
+
   return (
     <div className="addNote-main-container">
       <div
@@ -112,9 +125,18 @@ export const AddNote = () => {
                 btnclass={"btn-danger"}
                 onClick={handleClose}
               />
-              <Button name={"Add Note"} btnclass={"btn-primary"} />
+              {!isEditing && (
+                <Button name={"Add Note"} btnclass={"btn-primary"} />
+              )}
             </div>
           </form>
+          {isEditing && (
+            <Button
+              name={"Update Note"}
+              btnclass={"btn-primary"}
+              onClick={() => update(note._id, note)}
+            />
+          )}
         </div>
       )}
     </div>
