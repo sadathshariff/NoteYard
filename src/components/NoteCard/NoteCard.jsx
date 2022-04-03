@@ -15,8 +15,6 @@ export const NoteCard = ({ note, deleteIcon }) => {
     setShowForm(true);
     setNote(note);
     navigate("/notes");
-    // const res = await updateNote(note._id, note);
-    // console.log("handler", res);
   };
 
   return (
@@ -27,7 +25,12 @@ export const NoteCard = ({ note, deleteIcon }) => {
     >
       <h3 className="headline-3">{title}</h3>
       <h4 className="headline-4">{label}</h4>
-      <p className="small-text-2">{notes}</p>
+      <p
+        className="small-text-2"
+        dangerouslySetInnerHTML={{
+          __html: notes,
+        }}
+      ></p>
       <div className="card-footer">
         <FaEdit onClick={() => updateNoteHandler(note)} />
         <FaArchive onClick={() => archiveNotes(_id, note)} />

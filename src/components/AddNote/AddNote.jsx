@@ -1,6 +1,5 @@
 import "./AddNote.css";
-import { Button } from "../index";
-
+import { Button, Editor } from "../index";
 import { FaPlusCircle } from "react-icons/fa";
 import axios from "axios";
 import { useNotes } from "../../context";
@@ -10,8 +9,7 @@ export const AddNote = () => {
     label: "",
     notes: "",
   };
-  // const [note, setNote] = useState(initialData);
-  // const [showNote, setShowNote] = useState(false);
+
   const {
     setUserNotes,
     showForm,
@@ -28,7 +26,6 @@ export const AddNote = () => {
     const value = e.target.value;
     setNote({ ...note, [name]: value });
   };
-
   const submitNote = async (note) => {
     try {
       const res = await axios.post(
@@ -51,18 +48,19 @@ export const AddNote = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     submitNote(note);
-    console.log("Submit", note);
     setNote(initialData);
   };
   const handleClose = () => {
     setNote(initialData);
     setShowForm((prev) => !prev);
   };
+
   const update = async (id, note) => {
     await updateNote(id, note);
     setShowForm((prev) => !prev);
     setIsEditing(false);
     setNote(initialData);
+    console.log(note);
   };
 
   return (
@@ -108,7 +106,13 @@ export const AddNote = () => {
               </div>
             </div>
             <div className="input">
-              <textarea
+              <Editor
+                name="notes"
+                className="input-text"
+                value={note.notes}
+                setValue={(e) => setNote({ ...note, notes: e })}
+              />
+              {/* <textarea
                 type="text"
                 name="notes"
                 className="input-text"
@@ -117,7 +121,7 @@ export const AddNote = () => {
                 value={note.notes}
                 onChange={(e) => handleChange(e)}
                 required
-              />
+              /> */}
             </div>
             <div className="addNote-footer">
               <Button
