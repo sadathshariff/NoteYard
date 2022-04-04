@@ -1,4 +1,5 @@
-import { FaTrash, FaArchive, FaEdit } from "react-icons/fa";
+import { FaTrash, FaEdit } from "react-icons/fa";
+import { RiInboxUnarchiveFill, RiInboxArchiveFill } from "react-icons/ri";
 import { BsPin, BsPinFill } from "react-icons/bs";
 import "./NoteCard.css";
 import { useNavigate } from "react-router-dom";
@@ -8,8 +9,16 @@ export const NoteCard = ({ noteDetails }) => {
   const { theme } = useTheme();
   const navigate = useNavigate();
 
-  const { setNote, setShowForm, deleteNote, noteDispatch, noteState } =
-    useNotes();
+  const {
+    setNote,
+    setShowForm,
+    deleteNote,
+    noteDispatch,
+    noteState,
+    addToArchive,
+    restoreFromArchive,
+    deleteFromArchive,
+  } = useNotes();
 
   const updateNoteHandler = (_id, note) => {
     setNote({ ...note, isEditing: (note.isEditing = true) });
@@ -36,24 +45,38 @@ export const NoteCard = ({ noteDetails }) => {
         }}
       ></p>
       <h4 className="headline-4 label">{label}</h4>
-
-      {noteState.trashedNotes.includes(noteDetails) ? (
+      {noteState.archives.includes(noteDetails) ? (
         <div className="flex-end">
+          <RiInboxUnarchiveFill
+            onClick={() => restoreFromArchive(noteDetails, noteDispatch)}
+          />
           <FaTrash
-            onClick={() =>
-              noteDispatch({
-                type: "REMOVE_FROM_TRASH",
-                payload: noteDetails,
-              })
-            }
+            onClick={() => deleteFromArchive(noteDetails, noteDispatch)}
           />
         </div>
       ) : (
-        <div className="card-footer">
-          <FaEdit onClick={() => updateNoteHandler(_id, noteDetails)} />
-          <FaArchive onClick={() => archiveNotes(_id, noteDetails)} />
-          <FaTrash onClick={() => deleteNote(noteDetails, noteDispatch)} />
-        </div>
+        <>
+          {noteState.trashedNotes.includes(noteDetails) ? (
+            <div className="flex-end">
+              <FaTrash
+                onClick={() =>
+                  noteDispatch({
+                    type: "REMOVE_FROM_TRASH",
+                    payload: noteDetails,
+                  })
+                }
+              />
+            </div>
+          ) : (
+            <div className="card-footer">
+              <FaEdit onClick={() => updateNoteHandler(_id, noteDetails)} />
+              <RiInboxArchiveFill
+                onClick={() => addToArchive(noteDetails, noteDispatch)}
+              />
+              <FaTrash onClick={() => deleteNote(noteDetails, noteDispatch)} />
+            </div>
+          )}
+        </>
       )}
     </div>
   );

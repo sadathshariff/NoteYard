@@ -9,7 +9,14 @@ const NoteContext = createContext(null);
 import axios from "axios";
 import { useAuth } from "../Auth/context";
 import { noteReducer } from "./reducer";
-import { addNote, deleteNote, updateNote } from "./utils";
+import {
+  addNote,
+  deleteNote,
+  updateNote,
+  addToArchive,
+  restoreFromArchive,
+  deleteFromArchive,
+} from "./utils";
 const NoteProvider = ({ children }) => {
   const initialData = {
     title: "",
@@ -40,9 +47,22 @@ const NoteProvider = ({ children }) => {
       console.error("Get Notes Error", error);
     }
   };
+  const getArchiveNotes = async (noteDispatch) => {
+    try {
+      const res = await axios.get("/api/archives", {
+        headers: { authorization: localStorage.getItem("UserToken") },
+      });
+      if (res.status === 200) {
+        noteDispatch({ type: "GET_ARCHIVE_NOTES", payload: res.data.archives });
+      }
+    } catch (error) {
+      console.error("Get Notes Error", error);
+    }
+  };
   useEffect(() => {
     if (loggedIn) {
       getUserNotes(noteDispatch);
+      getArchiveNotes(noteDispatch);
     }
   }, [loggedIn]);
 
@@ -58,6 +78,9 @@ const NoteProvider = ({ children }) => {
         updateNote,
         showForm,
         setShowForm,
+        addToArchive,
+        restoreFromArchive,
+        deleteFromArchive,
       }}
     >
       {children}
