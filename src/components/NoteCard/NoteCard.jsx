@@ -1,17 +1,20 @@
 import { FaTrash, FaArchive, FaEdit } from "react-icons/fa";
+import axios from "axios";
 import "./NoteCard.css";
+import { useNavigate } from "react-router-dom";
 import { useNotes, useTheme } from "../../context";
 export const NoteCard = ({ note, deleteIcon }) => {
   const { _id, title, label, notes } = note;
   const { theme } = useTheme();
-  const { deleteNote, updateNote, setShowForm, setNote } = useNotes();
+  const { deleteNote, updateNote, setShowForm, setNote, setIsEditing } =
+    useNotes();
+  const navigate = useNavigate();
 
-  const updateNoteHandler = async (id, note) => {
+  const updateNoteHandler = async (note) => {
+    setIsEditing(true);
     setShowForm(true);
     setNote(note);
-    console.log(note);
-    const res = await updateNote(id, note);
-    console.log("New", res);
+    navigate("/notes");
   };
 
   return (
@@ -22,10 +25,15 @@ export const NoteCard = ({ note, deleteIcon }) => {
     >
       <h3 className="headline-3">{title}</h3>
       <h4 className="headline-4">{label}</h4>
-      <p className="small-text-2">{notes}</p>
+      <p
+        className="small-text-2"
+        dangerouslySetInnerHTML={{
+          __html: notes,
+        }}
+      ></p>
       <div className="card-footer">
-        <FaEdit onClick={() => updateNoteHandler(_id, note)} />
-        <FaArchive />
+        <FaEdit onClick={() => updateNoteHandler(note)} />
+        <FaArchive onClick={() => archiveNotes(_id, note)} />
         {deleteIcon && <FaTrash onClick={() => deleteNote(_id)} />}
       </div>
     </div>

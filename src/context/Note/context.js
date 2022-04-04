@@ -12,6 +12,7 @@ const NoteProvider = ({ children }) => {
   const [showForm, setShowForm] = useState(false);
   const [userNotes, setUserNotes] = useState([]);
   const [deletedNotes, setDeletedNotes] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
   const token = localStorage.getItem("UserToken");
   const { loggedIn } = useAuth();
 
@@ -52,8 +53,7 @@ const NoteProvider = ({ children }) => {
         {
           headers: { authorization: token },
         }
-      );
-      console.log("Updated Res", res);
+      );      
       setUserNotes(res.data.notes);
     } catch (error) {
       console.error("Update Notes Error", error);
@@ -77,6 +77,8 @@ const NoteProvider = ({ children }) => {
         deleteNote,
         deletedNotes,
         updateNote,
+        isEditing,
+        setIsEditing,
       }}
     >
       {children}

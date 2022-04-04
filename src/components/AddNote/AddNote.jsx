@@ -1,6 +1,5 @@
 import "./AddNote.css";
-import { Button } from "../index";
-
+import { Button, Editor } from "../index";
 import { FaPlusCircle } from "react-icons/fa";
 import axios from "axios";
 import { useNotes } from "../../context";
@@ -10,17 +9,23 @@ export const AddNote = () => {
     label: "",
     notes: "",
   };
-  // const [note, setNote] = useState(initialData);
-  // const [showNote, setShowNote] = useState(false);
-  const { setUserNotes, showForm, setShowForm, note, setNote, updateNote } =
-    useNotes();
+
+  const {
+    setUserNotes,
+    showForm,
+    setShowForm,
+    note,
+    setNote,
+    updateNote,
+    isEditing,
+    setIsEditing,
+  } = useNotes();
 
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setNote({ ...note, [name]: value });
   };
-
   const submitNote = async (note) => {
     try {
       const res = await axios.post(
@@ -49,9 +54,15 @@ export const AddNote = () => {
     setNote(initialData);
     setShowForm((prev) => !prev);
   };
-  const update = () => {
-    
-  }
+
+  const update = async (id, note) => {
+    await updateNote(id, note);
+    setShowForm((prev) => !prev);
+    setIsEditing(false);
+    setNote(initialData);
+    console.log(note);
+  };
+
   return (
     <div className="addNote-main-container">
       <div
@@ -95,7 +106,13 @@ export const AddNote = () => {
               </div>
             </div>
             <div className="input">
-              <textarea
+              <Editor
+                name="notes"
+                className="input-text"
+                value={note.notes}
+                setValue={(e) => setNote({ ...note, notes: e })}
+              />
+              {/* <textarea
                 type="text"
                 name="notes"
                 className="input-text"
@@ -104,7 +121,7 @@ export const AddNote = () => {
                 value={note.notes}
                 onChange={(e) => handleChange(e)}
                 required
-              />
+              /> */}
             </div>
             <div className="addNote-footer">
               <Button
@@ -112,9 +129,18 @@ export const AddNote = () => {
                 btnclass={"btn-danger"}
                 onClick={handleClose}
               />
-              <Button name={"Add Note"} btnclass={"btn-primary"} />
+              {!isEditing && (
+                <Button name={"Add Note"} btnclass={"btn-primary"} />
+              )}
             </div>
           </form>
+          {isEditing && (
+            <Button
+              name={"Update Note"}
+              btnclass={"btn-primary"}
+              onClick={() => update(note._id, note)}
+            />
+          )}
         </div>
       )}
     </div>
