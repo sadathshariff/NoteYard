@@ -1,66 +1,44 @@
 import "./AddNote.css";
-import { Button, Editor } from "../index";
+import { Button, Editor, ColorPicker } from "../index";
 import { FaPlusCircle } from "react-icons/fa";
-import axios from "axios";
 import { useNotes } from "../../context";
 export const AddNote = () => {
-  const initialData = {
-    title: "",
-    label: "",
-    notes: "",
-  };
-
   const {
-    setUserNotes,
-    showForm,
-    setShowForm,
+    addNote,
+    updateNote,
     note,
     setNote,
-    updateNote,
-    isEditing,
-    setIsEditing,
+    noteDispatch,
+    showForm,
+    setShowForm,
   } = useNotes();
+
+  const initialData = {
+    title: "",
+    label: "Home",
+    notes: "",
+    priority: "High",
+    isEditing: false,
+    isPinned: false,
+  };
 
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setNote({ ...note, [name]: value });
   };
-  const submitNote = async (note) => {
-    try {
-      const res = await axios.post(
-        "/api/notes",
-        { note },
-        {
-          headers: {
-            authorization: localStorage.getItem("UserToken"),
-          },
-        }
-      );
-      if (res.status === 201) {
-        setUserNotes(res.data.notes);
-        setShowForm(false);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    submitNote(note);
+    note.isEditing
+      ? updateNote(note, noteDispatch)
+      : addNote(note, noteDispatch);
     setNote(initialData);
+    setShowForm(false);
   };
   const handleClose = () => {
     setNote(initialData);
     setShowForm((prev) => !prev);
-  };
-
-  const update = async (id, note) => {
-    await updateNote(id, note);
-    setShowForm((prev) => !prev);
-    setIsEditing(false);
-    setNote(initialData);
-    console.log(note);
   };
 
   return (
@@ -75,7 +53,7 @@ export const AddNote = () => {
       {showForm && (
         <div className="addNote-container">
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-col-2 grid-gap-1">
+            <div className="grid grid-col-3 grid-gap-1">
               <div className="input ">
                 <label htmlFor="title">Title*</label>
                 <input
@@ -100,8 +78,22 @@ export const AddNote = () => {
                 >
                   <option value="Work">Work</option>
                   <option value="Home">Home</option>
-                  <option value="Class">Class</option>
+                  <option value="Chores">Chores</option>
                   <option value="Exercise">Exercise</option>
+                </select>
+              </div>
+              <div className="input">
+                <label htmlFor="priority">Priority*</label>
+                <select
+                  name="priority"
+                  id="priority"
+                  className="input-text"
+                  onChange={(e) => handleChange(e)}
+                  required
+                >
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
                 </select>
               </div>
             </div>
@@ -112,35 +104,21 @@ export const AddNote = () => {
                 value={note.notes}
                 setValue={(e) => setNote({ ...note, notes: e })}
               />
-              {/* <textarea
-                type="text"
-                name="notes"
-                className="input-text"
-                id="notes"
-                placeholder="Enter Text Here"
-                value={note.notes}
-                onChange={(e) => handleChange(e)}
-                required
-              /> */}
             </div>
+
             <div className="addNote-footer">
               <Button
                 name={"Cancel"}
                 btnclass={"btn-danger"}
                 onClick={handleClose}
               />
-              {!isEditing && (
+              {!note.isEditing ? (
                 <Button name={"Add Note"} btnclass={"btn-primary"} />
+              ) : (
+                <Button name={"Update Note"} btnclass={"btn-primary"} />
               )}
             </div>
           </form>
-          {isEditing && (
-            <Button
-              name={"Update Note"}
-              btnclass={"btn-primary"}
-              onClick={() => update(note._id, note)}
-            />
-          )}
         </div>
       )}
     </div>

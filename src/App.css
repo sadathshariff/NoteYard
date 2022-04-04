@@ -6,3 +6,8 @@
   background-color: var(--black-color);
   color: var(--white-color);
 }
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}

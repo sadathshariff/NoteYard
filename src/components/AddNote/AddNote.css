@@ -9,6 +9,7 @@
 .addNote-footer {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .addNote-btn {

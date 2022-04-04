@@ -4,3 +4,5 @@ export { AddNote } from "./AddNote/AddNote";
 export { SideNav } from "./SideNav/SideNav";
 export { NoteCard } from "./NoteCard/NoteCard";
 export { Editor } from "./Editor/Editor";
+export { ColorPicker } from "./ColorPicker/ColorPicker";
+export { Toast } from "./Toast/Toast";
