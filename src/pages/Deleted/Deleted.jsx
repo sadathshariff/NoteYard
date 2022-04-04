@@ -3,17 +3,23 @@ import { NoteCard } from "../../components/NoteCard/NoteCard";
 import { useNotes } from "../../context";
 
 export const Deleted = () => {
-  const { deletedNotes } = useNotes();
-  console.log(deletedNotes);
+  const { noteState } = useNotes();
+  const { trashedNotes } = noteState;
   return (
     <>
       <div className="notePage-container">
         <SideNav />
         <div className="display-notes-container">
-          <h1>Deleted Page</h1>
-          {deletedNotes.map((note) => (
-            <NoteCard key={note._id} note={note} />
-          ))}
+          <h1>Deleted Notes</h1>
+          {trashedNotes.length !== 0 ? (
+            <>
+              {trashedNotes.map((note) => (
+                <NoteCard key={note._id} noteDetails={note} />
+              ))}
+            </>
+          ) : (
+            <p className="small-text-1">No Notes in the Trash!</p>
+          )}
         </div>
       </div>
     </>
