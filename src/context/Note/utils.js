@@ -68,7 +68,6 @@ export const addToArchive = async (note, noteDispatch) => {
       Toast("Added to Archives", "success");
     }
   } catch (error) {
-    console.log("Archive", error);
     Toast("Couldn't Add to Archive ", "error");
   }
 };
@@ -86,7 +85,6 @@ export const restoreFromArchive = async (note, noteDispatch) => {
       Toast("Restored from Archives", "success");
     }
   } catch (error) {
-    console.log("REstore", error);
     Toast("Couldn't Restore from Archive ", "error");
   }
 };
@@ -104,7 +102,6 @@ export const deleteFromArchive = async (note, noteDispatch) => {
       Toast("Deleted from Archives", "success");
     }
   } catch (error) {
-    console.log("DElete", error);
     Toast("Couldn't Delete from Archive ", "error");
   }
 };
