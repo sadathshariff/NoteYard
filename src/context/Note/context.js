@@ -40,37 +40,6 @@ const NoteProvider = ({ children }) => {
       console.error("Get Notes Error", error);
     }
   };
-  // const deleteNote = async (notesId) => {
-  //   try {
-  //     const res = await axios.delete(`/api/notes/${notesId}`, {
-  //       headers: { authorization: token },
-  //     });
-  //     const findDeletedNote = userNotes.find((item) => item._id === notesId);
-  //     if (res.status === 200) {
-  //       setUserNotes(res.data.notes);
-  //       setDeletedNotes([findDeletedNote, ...deletedNotes]);
-  //     }
-  //   } catch (error) {
-  //     console.error("Post Notes Error", error);
-  //   }
-  // };
-
-  // const updateNote = async (noteId, note) => {
-  //   try {
-  //     const res = await axios.post(
-  //       `/api/notes/${noteId}`,
-  //       {
-  //         note,
-  //       },
-  //       {
-  //         headers: { authorization: token },
-  //       }
-  //     );
-  //     setUserNotes(res.data.notes);
-  //   } catch (error) {
-  //     console.error("Update Notes Error", error);
-  //   }
-  // };
   useEffect(() => {
     if (loggedIn) {
       getUserNotes(noteDispatch);

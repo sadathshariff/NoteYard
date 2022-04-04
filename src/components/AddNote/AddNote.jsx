@@ -3,16 +3,6 @@ import { Button, Editor, ColorPicker } from "../index";
 import { FaPlusCircle } from "react-icons/fa";
 import { useNotes } from "../../context";
 export const AddNote = () => {
-  // const {
-  //   setUserNotes,
-  //   showForm,
-  //   setShowForm,
-  //   note,
-  //   setNote,
-  //   updateNote,
-  //   isEditing,
-  //   setIsEditing,
-  // } = useNotes();
   const {
     addNote,
     updateNote,
