@@ -1,12 +1,23 @@
 .notecard {
   padding: 1rem;
   height: fit-content;
-  width: 20rem;
+  width: 25rem;
   margin: 0.5rem 1rem;
   border-radius: 5px;
   background-color: var(--off-white);
 }
-
+.note-header {
+  display: flex;
+  justify-content: space-between;
+}
+.label {
+  background-color: var(--primary-color);
+  padding: 4px 8px;
+  border-radius: 5px;
+  margin: 5px 0s;
+  width: max-content;
+  color: var(--off-white);
+}
 .light-notecard {
   background-color: var(--off-white);
   color: #000000;
