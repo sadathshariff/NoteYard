@@ -22,7 +22,22 @@ export const noteReducer = (state, action) => {
           ),
         ],
       };
-
+    case "GET_ARCHIVE_NOTES":
+      return { ...state, archives: action.payload };
+    case "ADD_TO_ARCHIVE":
+      return {
+        ...state,
+        notes: action.payload.notes,
+        archives: action.payload.archives,
+      };
+    case "RESTORE_FROM_ARCHIVE":
+      return {
+        ...state,
+        notes: action.payload.notes,
+        archives: action.payload.archives,
+      };
+    case "DELETE_FROM_ARCHIVE":
+      return { ...state, archives: action.payload };
     default:
       return { ...state };
   }
