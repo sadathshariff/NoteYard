@@ -6,3 +6,4 @@ export { NoteCard } from "./NoteCard/NoteCard";
 export { Editor } from "./Editor/Editor";
 export { ColorPicker } from "./ColorPicker/ColorPicker";
 export { Toast } from "./Toast/Toast";
+export { PinnedCard } from "./PinnedCard/PinnedCard";

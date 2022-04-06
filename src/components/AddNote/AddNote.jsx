@@ -20,6 +20,7 @@ export const AddNote = () => {
     priority: "High",
     isEditing: false,
     isPinned: false,
+    date: new Date().toLocaleDateString(),
   };
 
   const handleChange = (e) => {

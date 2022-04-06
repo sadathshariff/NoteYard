@@ -1,12 +1,24 @@
 import "./ColorPicker.css";
 import { MdColorLens } from "react-icons/md";
 import { useState } from "react";
-export const ColorPicker = () => {
+export const ColorPicker = ({ changeColor }) => {
   const [showColor, setShowColor] = useState(false);
-  const colorPallete = ["#E3BEC6", "#CEAB93", "#F6D7A7", "#E7ED9B"];
+  const colorPallete = [
+    "#E3BEC6",
+    "#E193FD",
+    "#F6D7A7",
+    "#AF9EB5",
+    "#E7ED9B",
+    "#9DB5B2",
+  ];
   return (
     <div className="color-picker-div">
-      <MdColorLens onClick={() => setShowColor((prev) => !prev)} />
+      <MdColorLens
+        size={25}
+        className="note-footer-icon"
+        onClick={() => setShowColor((prev) => !prev)}
+      />
+      
       {showColor && (
         <div className="color-wrapper">
           {colorPallete.map((color) => {
@@ -15,7 +27,7 @@ export const ColorPicker = () => {
                 key={color}
                 className="color"
                 style={{ backgroundColor: `${color}` }}
-                onClick={() => alert(color)}
+                onClick={() => changeColor(color)}
               ></div>
             );
           })}

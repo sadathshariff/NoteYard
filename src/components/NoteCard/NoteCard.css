@@ -5,6 +5,7 @@
   margin: 0.5rem 1rem;
   border-radius: 5px;
   background-color: var(--off-white);
+  color: var(--text-color);
 }
 .note-header {
   display: flex;
@@ -14,7 +15,7 @@
   background-color: var(--primary-color);
   padding: 4px 8px;
   border-radius: 5px;
-  margin: 5px 0s;
+  margin: 0.5rem 0;
   width: max-content;
   color: var(--off-white);
 }
@@ -28,4 +29,12 @@
   background-color: #121212;
   color: var(--off-white);
   box-shadow: 0 4px 4px 0 rgba(255, 255, 255, 0.5);
+}
+
+.archive-icons {
+  display: flex;
+  justify-content: space-around;
+}
+.note-footer-icon:hover {
+  cursor: pointer;
 }

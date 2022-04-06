@@ -24,7 +24,9 @@ const NoteProvider = ({ children }) => {
     notes: "",
     priority: "High",
     isEditing: false,
+    bgColor: "off-white",
     isPinned: false,
+    date: new Date().toLocaleDateString(),
   };
   const [note, setNote] = useState(initialData);
   const [showForm, setShowForm] = useState(false);
@@ -33,8 +35,8 @@ const NoteProvider = ({ children }) => {
     notes: [],
     archives: [],
     trashedNotes: [],
+    pinnedNotes: [],
   });
-
   const getUserNotes = async (noteDispatch) => {
     try {
       const res = await axios.get("/api/notes", {
