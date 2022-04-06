@@ -11,3 +11,8 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.flex-sb {
+  display: flex;
+  justify-content: space-between;
+}

@@ -3,7 +3,15 @@ export const noteReducer = (state, action) => {
     case "ADD_NOTE":
       return { ...state, notes: action.payload };
     case "DELETE_NOTE":
-      return { ...state, notes: action.payload };
+      return {
+        ...state,
+        notes: action.payload,
+        pinnedNotes: [
+          ...state.pinnedNotes.filter(
+            (item) => item._id !== action.payload._id
+          ),
+        ],
+      };
     case "EDIT_NOTE":
       return { ...state, notes: action.payload };
     case "GET_NOTES":
@@ -12,6 +20,11 @@ export const noteReducer = (state, action) => {
       return {
         ...state,
         trashedNotes: [...state.trashedNotes, action.payload],
+        pinnedNotes: [
+          ...state.pinnedNotes.filter(
+            (item) => item._id !== action.payload._id
+          ),
+        ],
       };
     case "REMOVE_FROM_TRASH":
       return {
@@ -29,6 +42,11 @@ export const noteReducer = (state, action) => {
         ...state,
         notes: action.payload.notes,
         archives: action.payload.archives,
+        pinnedNotes: [
+          ...state.pinnedNotes.filter(
+            (item) => item._id !== action.payload.archives
+          ),
+        ],
       };
     case "RESTORE_FROM_ARCHIVE":
       return {
@@ -38,6 +56,24 @@ export const noteReducer = (state, action) => {
       };
     case "DELETE_FROM_ARCHIVE":
       return { ...state, archives: action.payload };
+    case "PIN_NOTE":
+      return {
+        ...state,
+        pinnedNotes: [...state.pinnedNotes, action.payload],
+        notes: [
+          ...state.notes.filter((item) => item._id !== action.payload._id),
+        ],
+      };
+    case "UNPIN_NOTE":
+      return {
+        ...state,
+        pinnedNotes: [
+          ...state.pinnedNotes.filter(
+            (item) => item._id !== action.payload._id
+          ),
+        ],
+        notes: [...state.notes, action.payload],
+      };
     default:
       return { ...state };
   }

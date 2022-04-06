@@ -5,12 +5,7 @@
   border-radius: 50%;
 }
 .color-picker-div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  height: max-content;
-  border-radius: 2px;
+  position: relative;
 }
 
 .color-wrapper {
@@ -21,4 +16,7 @@
   justify-content: center;
   align-items: center;
   background-color: var(--off-white);
+  position: absolute;
+  margin-top: 4px;
+  border-radius: 10px;
 }

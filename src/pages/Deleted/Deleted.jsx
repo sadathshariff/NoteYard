@@ -10,7 +10,7 @@ export const Deleted = () => {
       <div className="notePage-container">
         <SideNav />
         <div className="display-notes-container">
-          <h1>Deleted Notes</h1>
+          <h1 className="headline-2 text-center">Deleted Notes</h1>
           {trashedNotes.length !== 0 ? (
             <>
               {trashedNotes.map((note) => (
@@ -18,7 +18,7 @@ export const Deleted = () => {
               ))}
             </>
           ) : (
-            <p className="small-text-1">No Notes in the Trash!</p>
+            <p className="small-text-1 text-center">No Notes in the Trash!</p>
           )}
         </div>
       </div>

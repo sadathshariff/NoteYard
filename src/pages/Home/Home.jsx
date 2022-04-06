@@ -18,7 +18,6 @@ export const Home = () => {
               <Link to="/signup">
                 <button className="btn btn-primary">SignUp</button>
               </Link>
-
               <p className="small-text-2 login-text">
                 <Link to="/login">Already Have an Account | Login</Link>
               </p>

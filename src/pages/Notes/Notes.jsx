@@ -1,27 +1,37 @@
 import "./Notes.css";
-import { AddNote, NoteCard, SideNav } from "../../components";
+import { AddNote, NoteCard, PinnedCard, SideNav } from "../../components";
 import { useNotes } from "../../context";
 export const Notes = () => {
   const { noteState } = useNotes();
-  const { notes } = noteState;
+  const { notes, pinnedNotes } = noteState;
   return (
     <>
       <div className="notePage-container">
         <SideNav />
         <div className="display-notes-container">
           <AddNote />
-          {notes.length === 0 ? (
+          <>
+            {pinnedNotes.length === 0 ? (
+              ""
+            ) : (
+              <>
+                <h3 className="headline-3 text-center">Pinned Notes</h3>
+                <div className="notes">
+                  {pinnedNotes.map((note) => (
+                    <PinnedCard key={note._id} noteDetails={note} />
+                  ))}
+                </div>
+              </>
+            )}{" "}
+          </>
+          {notes.length === 0 && pinnedNotes.length === 0 ? (
             <h3 className="headline-3 text-center">You don't have any Notes</h3>
           ) : (
             <>
               <h3 className="headline-3 text-center">Notes</h3>
               <div className="notes">
                 {notes.map((note) => (
-                  <NoteCard
-                    key={note._id}
-                    noteDetails={note}
-                    deleteIcon={true}
-                  />
+                  <NoteCard key={note._id} noteDetails={note} />
                 ))}
               </div>
             </>
