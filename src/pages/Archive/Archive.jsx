@@ -4,7 +4,6 @@ import { useNotes } from "../../context";
 export const Archive = () => {
   const { noteState } = useNotes();
   const { archives } = noteState;
-  console.log(archives);
   return (
     <>
       <div className="notePage-container">
