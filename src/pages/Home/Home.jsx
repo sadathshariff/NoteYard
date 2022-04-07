@@ -12,7 +12,8 @@ export const Home = () => {
           <div className="hero-content">
             <h1 className="headline-1">NoteYard</h1>
             <p className="small-text-1 text-center">
-              Put all your Tasks/Notes here rather than Kepping in your Brain
+              Dump all your Notes/Tasks in the NoteYard, so that you don't
+              forget it.
             </p>
             <div className="info-container text-center">
               <Link to="/signup">

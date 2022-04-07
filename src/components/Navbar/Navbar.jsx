@@ -10,7 +10,7 @@ export const Navbar = () => {
     <>
       <header className="header navbar-container">
         <Link to="/">
-          <h2 className="heading-2">NoteYard</h2>
+          <h2 className="heading-2 hero-heading">NoteYard</h2>
         </Link>
         <nav>
           <div className="nav-items flex">

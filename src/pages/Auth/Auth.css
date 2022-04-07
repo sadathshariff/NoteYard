@@ -9,7 +9,6 @@
   max-width: 28rem;
   margin: auto;
   padding: 1rem;
-  background-color: var(--off-white);
   box-shadow: var(--lightShadow);
   border-radius: 5px;
 }

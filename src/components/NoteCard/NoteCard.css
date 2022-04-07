@@ -21,7 +21,7 @@
 }
 .light-notecard {
   background-color: var(--off-white);
-  color: #000000;
+  color: var(--text-color);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
 }
 
