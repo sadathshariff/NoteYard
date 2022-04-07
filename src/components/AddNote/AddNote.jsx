@@ -20,7 +20,7 @@ export const AddNote = () => {
     priority: "High",
     isEditing: false,
     isPinned: false,
-    date: new Date().toLocaleDateString(),
+    date: new Date().toLocaleString(),
   };
 
   const handleChange = (e) => {
@@ -34,8 +34,8 @@ export const AddNote = () => {
     note.isEditing
       ? updateNote(note, noteDispatch)
       : addNote(note, noteDispatch);
-    setNote(initialData);
     setShowForm(false);
+    setNote(initialData);
   };
   const handleClose = () => {
     setNote(initialData);

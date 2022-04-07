@@ -26,7 +26,7 @@ const NoteProvider = ({ children }) => {
     isEditing: false,
     bgColor: "off-white",
     isPinned: false,
-    date: new Date().toLocaleDateString(),
+    date: new Date().toLocaleString(),
   };
   const [note, setNote] = useState(initialData);
   const [showForm, setShowForm] = useState(false);
