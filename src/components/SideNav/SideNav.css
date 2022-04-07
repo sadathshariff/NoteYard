@@ -1,5 +1,5 @@
 .side-nav-container {
-  padding: 2rem;
+  padding: 1rem 2rem;
   margin-right: 2rem;
   height: 100vh;
   border-radius: 5px;
@@ -11,7 +11,8 @@
 .side-nav-list {
   padding: 1rem;
 }
-.side-nav-list li {
-  display: grid;
-  justify-items: stretch;
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }

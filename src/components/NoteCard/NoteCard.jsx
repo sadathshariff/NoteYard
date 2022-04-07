@@ -16,7 +16,7 @@ export const NoteCard = ({ noteDetails }) => {
     priority: "High",
     isEditing: false,
     bgColor: "off-white",
-    date: new Date().toLocaleDateString(),
+    date: new Date().toLocaleString(),
   };
 
   const {
@@ -31,7 +31,11 @@ export const NoteCard = ({ noteDetails }) => {
   } = useNotes();
 
   const updateNoteHandler = (_id, note) => {
-    setNote({ ...note, isEditing: (note.isEditing = true) });
+    setNote({
+      ...note,
+      date: (note.date = new Date().toLocaleString()),
+      isEditing: (note.isEditing = true),
+    });
     setShowForm(true);
     setNote(note);
     navigate("/notes");
