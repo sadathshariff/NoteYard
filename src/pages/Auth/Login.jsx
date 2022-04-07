@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { Button } from "../../components";
+import { useTheme } from "../../context";
 import axios from "axios";
 import "./Auth.css";
 export const Login = () => {
+  const { theme } = useTheme();
   const initialData = {
     email: "",
     password: "",
@@ -43,7 +45,7 @@ export const Login = () => {
     handleLogin(loginDetails);
   };
   return (
-    <main className="login-card">
+    <main className={`login-card ${theme === "light" ? "light" : "dark"}`}>
       <div className="login">
         <h2 className="headline-2 text-center">Login</h2>
         <form onSubmit={submitLoginHandler}>

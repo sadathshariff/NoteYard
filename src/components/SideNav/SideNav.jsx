@@ -10,8 +10,12 @@ export const SideNav = () => {
 
   return (
     <div className="flex-column">
-      <div className="side-nav-container flex-column">
-        <ul className="list side-nav-list">
+      <div
+        className={`side-nav-container flex-column ${
+          theme === "light" ? "light" : "dark"
+        }`}
+      >
+        <ul className="list side-nav-list ">
           <Link to="/notes">
             <li className="flex">
               <FaBook size={20} />

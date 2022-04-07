@@ -44,12 +44,11 @@ export const NoteCard = ({ noteDetails }) => {
     setNote({ ...note, bgColor: (note.bgColor = color) });
     setNote(initialData);
   };
-
   return (
     <div
       className={`notecard ${
         theme === "light" ? "light-notecard" : "dark-notecard"
-      } `}
+      }`}
       style={{ backgroundColor: noteDetails.bgColor }}
     >
       <div className="note-header">
@@ -57,6 +56,7 @@ export const NoteCard = ({ noteDetails }) => {
         {noteState.pinnedNotes.includes(noteDetails) ? (
           <BsPinFill
             size={25}
+            className="note-footer-icon"
             onClick={() =>
               noteDispatch({ type: "UNPIN_NOTE", payload: noteDetails })
             }
@@ -64,6 +64,7 @@ export const NoteCard = ({ noteDetails }) => {
         ) : (
           <BsPin
             size={25}
+            className="note-footer-icon"
             onClick={() =>
               noteDispatch({ type: "PIN_NOTE", payload: noteDetails })
             }

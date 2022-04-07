@@ -9,3 +9,6 @@
 .nav-items {
   align-items: center;
 }
+.hero-heading {
+  color: var(--off-white);
+}
