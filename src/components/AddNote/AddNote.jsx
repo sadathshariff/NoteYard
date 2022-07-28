@@ -15,7 +15,7 @@ export const AddNote = () => {
 
   const initialData = {
     title: "",
-    label: "Home",
+    label: "Work",
     notes: "",
     priority: "High",
     isEditing: false,
